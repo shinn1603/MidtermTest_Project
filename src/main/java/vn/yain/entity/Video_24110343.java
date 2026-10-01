@@ -32,6 +32,12 @@ public class Video_24110343 implements Serializable {
     @Column(name = "VideoUrl", length = 255)
     private String videoUrl;
 
+    @Column(name = "Price")
+    private Double price = 100000.0;
+
+    @Column(name = "Stock")
+    private Integer stock = 50;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CategoryId")
     private Category_24110343 category;
@@ -155,5 +161,25 @@ public class Video_24110343 implements Serializable {
 
     public void setShareCount(long shareCount) {
         this.shareCount = shareCount;
+    }
+
+    public Double getPrice() {
+        return price != null ? price : 100000.0;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Integer getStock() {
+        return stock != null ? stock : 50;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public String getFormattedPrice() {
+        return String.format("%,.0f đ", getPrice());
     }
 }

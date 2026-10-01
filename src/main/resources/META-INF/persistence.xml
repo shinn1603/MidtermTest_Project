@@ -12,10 +12,12 @@
         <class>vn.yain.entity.Video_24110343</class>
         <class>vn.yain.entity.Share_24110343</class>
         <class>vn.yain.entity.Favorite_24110343</class>
+        <class>vn.yain.entity.Order_24110343</class>
+        <class>vn.yain.entity.OrderDetail_24110343</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=MidtermDB_24110343;trustServerCertificate=true;encrypt=false;" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=MidtermDB_24110343;trustServerCertificate=true;encrypt=false;sendStringParametersAsUnicode=true;" />
             <property name="jakarta.persistence.jdbc.user" value="sa" />
             <property name="jakarta.persistence.jdbc.password" value="123456" />
 
