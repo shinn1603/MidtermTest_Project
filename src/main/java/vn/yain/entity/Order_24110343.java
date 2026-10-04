@@ -162,26 +162,16 @@ public class Order_24110343 implements Serializable {
     }
 
     public String getStatusBadgeClass() {
-        if (status == null) return "bg-secondary";
-        switch (status.trim()) {
-            case "Đơn hàng mới":
-                return "bg-info text-dark";
-            case "Đã xác nhận":
-                return "bg-primary text-white";
-            case "Chuẩn bị hàng":
-                return "bg-warning text-dark";
-            case "Vận chuyển":
-                return "bg-secondary text-white";
-            case "Giao hàng":
-                return "bg-light-primary text-primary border border-primary";
-            case "Đã giao":
-                return "bg-success text-white";
-            case "Đơn hàng hủy":
-                return "bg-danger text-white";
-            case "Đơn hàng hoàn":
-                return "bg-dark text-white";
-            default:
-                return "bg-secondary text-white";
-        }
+        if (status == null) return "bg-secondary text-white";
+        String s = status.trim().toLowerCase();
+        if (s.contains("mới")) return "bg-info text-dark";
+        if (s.contains("xác nhận")) return "bg-primary text-white";
+        if (s.contains("chuẩn bị")) return "bg-warning text-dark";
+        if (s.contains("chuyển") || s.contains("chuyện")) return "bg-secondary text-white";
+        if (s.contains("đã giao")) return "bg-success text-white";
+        if (s.contains("giao")) return "bg-primary-subtle text-primary border border-primary-subtle";
+        if (s.contains("hủy")) return "bg-danger text-white";
+        if (s.contains("hoàn")) return "bg-dark text-white";
+        return "bg-secondary text-white";
     }
 }

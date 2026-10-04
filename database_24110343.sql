@@ -171,14 +171,14 @@ INSERT INTO Orders (OrderDate, Username, ReceiverName, ReceiverPhone, ReceiverAd
 GO
 
 -- 7. OrderDetails mẫu
-INSERT INTO OrderDetails (OrderId, VideoId, Quantity, Price) VALUES
-(1, N'VID01', 1, 120000),
-(1, N'VID08', 1, 250000),
-(2, N'VID08', 1, 250000),
-(3, N'VID10', 1, 220000),
-(4, N'VID03', 1, 180000),
-(5, N'VID02', 2, 150000),
-(6, N'VID13', 2, 200000),
-(7, N'VID01', 1, 120000),
-(8, N'VID02', 1, 150000);
+INSERT INTO OrderDetails (OrderId, VideoId, Quantity, Price, Size) VALUES
+(1, N'VID01', 1, 120000, N'Size M (1080p FHD)'),
+(1, N'VID08', 1, 250000, N'Size L (2K QHD)'),
+(2, N'VID08', 1, 250000, N'Size M (1080p FHD)'),
+(3, N'VID10', 1, 220000, N'Size XL (4K UHD)'),
+(4, N'VID03', 1, 180000, N'Size S (720p HD)'),
+(5, N'VID02', 2, 150000, N'Size M (1080p FHD)'),
+(6, N'VID13', 2, 200000, N'Size L (2K QHD)'),
+(7, N'VID01', 1, 120000, N'Size M (1080p FHD)'),
+(8, N'VID02', 1, 150000, N'Size S (720p HD)');
 GO

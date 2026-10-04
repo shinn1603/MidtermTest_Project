@@ -52,24 +52,45 @@ public class OrderHistoryController_24110343 extends HttpServlet {
         statusCounts.put("Đơn hàng hoàn", 0);
 
         for (Order_24110343 o : allOrders) {
-            String st = o.getStatus() != null ? o.getStatus().trim() : "";
-            if (statusCounts.containsKey(st)) {
-                statusCounts.put(st, statusCounts.get(st) + 1);
+            String norm = normalizeStatus(o.getStatus());
+            if (statusCounts.containsKey(norm)) {
+                statusCounts.put(norm, statusCounts.get(norm) + 1);
             }
         }
 
-        // Lấy danh sách đơn hàng tương ứng theo bộ lọc
+        String normSelected = normalizeStatus(selectedStatus);
         List<Order_24110343> displayOrders;
         if ("all".equalsIgnoreCase(selectedStatus)) {
             displayOrders = allOrders;
+            normSelected = "all";
         } else {
-            displayOrders = orderService.getOrdersByUserAndStatus(user.getUsername(), selectedStatus);
+            final String target = normSelected;
+            displayOrders = new java.util.ArrayList<>();
+            for (Order_24110343 o : allOrders) {
+                if (normalizeStatus(o.getStatus()).equalsIgnoreCase(target)) {
+                    displayOrders.add(o);
+                }
+            }
         }
 
         req.setAttribute("orders", displayOrders);
-        req.setAttribute("selectedStatus", selectedStatus);
+        req.setAttribute("selectedStatus", normSelected);
         req.setAttribute("statusCounts", statusCounts);
 
         req.getRequestDispatcher("/views/web/order-history.jsp").include(req, resp);
+    }
+
+    private String normalizeStatus(String st) {
+        if (st == null || st.trim().isEmpty()) return "all";
+        String s = st.trim().toLowerCase();
+        if (s.contains("mới")) return "Đơn hàng mới";
+        if (s.contains("xác nhận")) return "Đã xác nhận";
+        if (s.contains("chuẩn bị")) return "Chuẩn bị hàng";
+        if (s.contains("chuyển") || s.contains("chuyện")) return "Vận chuyển";
+        if (s.contains("đã giao")) return "Đã giao";
+        if (s.contains("giao")) return "Giao hàng";
+        if (s.contains("hủy")) return "Đơn hàng hủy";
+        if (s.contains("hoàn")) return "Đơn hàng hoàn";
+        return st.trim();
     }
 }
